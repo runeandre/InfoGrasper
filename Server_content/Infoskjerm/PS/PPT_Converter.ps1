@@ -32,40 +32,7 @@ Remove-Item $content_to_remove -recurse
 $ipath = "C:\Infoskjerm\MediaFolders\Input_PowerPoints\"
 #Loop thru all files in the input folder.
 #   Note the filter used for the filename
-foreach ($ifile in $(ls $ipath -Filter "*.ppt*")) {
-	$MSPPT = New-Object -ComObject powerpoint.application
-	$PRES = $MSPPT.presentations.open($ipath + $ifile, 2, $True, $False)
-    
-    #Number to add at the end of each picture
-	$count=1
-    #Remove the end of the filename (".pptx" etc) for the output name
-    $ofile = $ifile.BaseName
-    #New picture folder
-    $new_picture_folder = $opath + $ofile
-
-    #Create folder for the pictures
-    New-Item -ItemType directory -Path $new_picture_folder
-
-    #Loop thru each slide
-	foreach($Slide in $PRES.slides)
-	{
-		#Save the slide as a picture
-		$Slide.Export($new_picture_folder + "\" + $ofile + "_" + $count + ".png", "PNG")
-        
-		$count++
-	}
-
-	$MSPPT.Quit()
-}
-
-
-#######################################
-### "Oslo felles" PowerPoint folder ###
-#######################################
-$ipath = "C:\Infoskjerm\MediaFolders\Input_OsloFellesInfo\"
-#Loop thru all files in the input folder.
-#   Note the filter used for the filename
-foreach ($ifile in $(ls $ipath -Filter "*.ppt*")) {
+foreach ($ifile in $(ls $ipath -Filter "*.p*t*")) {
 	$MSPPT = New-Object -ComObject powerpoint.application
 	$PRES = $MSPPT.presentations.open($ipath + $ifile, 2, $True, $False)
     
