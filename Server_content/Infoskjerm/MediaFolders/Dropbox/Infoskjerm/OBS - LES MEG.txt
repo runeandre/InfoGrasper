@@ -1,2 +1,0 @@
-Husk at visst du skal legge til bilde i "Images" mappen så må du legge bildet inni ei mappe.
-Se hvordan filene ligger der fra før av!

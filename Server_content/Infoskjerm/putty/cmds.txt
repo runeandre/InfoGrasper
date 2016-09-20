@@ -1,2 +1,0 @@
-/home/pi/scripts/stop.sh
-/home/pi/scripts/start.sh
