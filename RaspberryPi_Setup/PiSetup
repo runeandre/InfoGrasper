@@ -1,0 +1,127 @@
+#!/bin/bash
+
+##########################################################
+# Do some script initializations to make it more robust! #
+##########################################################
+
+# Print the following whenever scripts exists (trigger):
+trap "echo '<< Leaving PiSetup'" INT TERM EXIT
+# Do not allow scripts to continue on error!
+set -o errexit
+# Fail if any variables are empty! All variables SHOULD be set!
+set -o nounset
+
+
+
+##############################
+# How to run this setup file #
+#                            #
+# chmod +x PiSetup           #
+# sudo ./PiSetup             #
+#                            #
+# OS: Rasbian                #
+##############################
+echo "* Let's setup the Raspberry Pi"
+
+echo '* You need to run this with sudo!'
+sudo echo "* We have root access"
+
+echo "* Updating the Pi"
+sudo apt update
+sudo apt -y dist-upgrade
+
+
+
+##################################
+# Network Manager for XS4DS wifi #
+#              Start             #
+##################################
+echo "* Install network manager"
+sudo apt -y install network-manager network-manager-gnome
+
+echo "* Updating /etc/NetworkManager/NetworkManager.conf"
+sudo cp /etc/NetworkManager/NetworkManager.conf /etc/NetworkManager/NetworkManager.conf.cp
+sudo echo '[main]
+plugins=ifupdown,keyfile
+
+[ifupdown]
+managed=true
+' > /etc/NetworkManager/NetworkManager.conf
+
+echo "* Updating /etc/network/interfaces"
+sudo cp /etc/network/interfaces /etc/network/interfaces.cp
+sudo echo 'auto lo
+iface lo inet loopback' > /etc/network/interfaces
+##################################
+# Network Manager for XS4DS wifi #
+#              Stop              #
+##################################
+
+
+
+#######################
+# Infoskjerm specific #
+#        Start        #
+#######################
+echo "* Install fbi"
+sudo apt -y install fbi
+
+echo "* Create dir /home/pi/scripts"
+mkdir /home/pi/scripts
+
+echo "* Create start and stop scripts"
+touch /home/pi/scripts/start.sh
+touch /home/pi/scripts/stop.sh
+
+echo "* Set start stop executable"
+chmod +x /home/pi/scripts/start.sh
+chmod +x /home/pi/scripts/stop.sh
+
+echo "* Add start script content"
+echo "#!/bin/bash
+export FRAMEBUFFER=/dev/fb0 DISPLAY=:0 && sudo fbi -d /dev/fb0 -T 1 -autozoom -noverbose -timeout 15 --resolution 3 /home/pi/Pictures/*/*
+exit 0" > /home/pi/scripts/start.sh
+
+echo "* Add stop script content"
+echo '#!/bin/bash
+sudo kill $( ps aux | grep -v grep | grep fbi | awk '\''{ print $2 }'\'' )' > /home/pi/scripts/stop.sh
+
+echo "* Add start script to startup"
+sed -i '$i \# Start the info screen script\n/home/pi/scripts/start.sh &\n' /etc/rc.local
+#######################
+# Infoskjerm specific #
+#        Stop         #
+#######################
+
+
+
+###################################
+# Manual Raspberry Pi setup steps #
+###################################
+echo '>>> This file is located on your Desktop and is named "Raspberry_Pi_Setup" <<<
+
+Configure Raspbian with "Raspberry Pi Configuration" tool
+  1. Open image on the desktop named "RaspberryPi_Config"
+  2. Set unique hostname
+  3. Boot = To CLI
+  4. Expand storage
+
+Connect to the Wifi network "XS4DS"
+  1. Reboot once before connecting to the Wifi
+  2. Open the image on the desktop named "Wifi"
+  3. Connect to XS4DS as specified there
+  
+
+Default username and password:
+   Username: pi
+   Password: raspberry
+' > /home/pi/Desktop/Raspberry_Pi_Setup.txt
+leafpad /home/pi/Desktop/Raspberry_Pi_Setup.txt &
+
+echo "* Wifi settings XS4DS"
+cp Wifi.png /home/pi/Desktop/
+gpicview /home/pi/Desktop/Wifi.png &
+
+echo "* Raspberry Pi configuration"
+cp RaspberryPi_Config.png /home/pi/Desktop/
+gpicview /home/pi/Desktop/RaspberryPi_Config.png &
