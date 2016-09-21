@@ -22,10 +22,10 @@ Windows PC = Server to push images to Pi's, also converts Power Points
 
 7. The script will download updates to Rasbian, install network manager and fbi, and update config files and scripts.
 8. Follow the manual instructions the script shows when it has completed (configuring the Pi).
-⋅⋅⋅A text file and two images will be copied onto the Desktop of the Pi.
-⋅⋅*Raspberry_Pi_Setup.txt
-⋅⋅*RaspberryPi_Config.png
-⋅⋅*Wifi.png
+   A text file and two images will be copied onto the Desktop of the Pi.
+  *Raspberry_Pi_Setup.txt
+  *RaspberryPi_Config.png
+  *Wifi.png
 
 ### Device 2 - Windows PC
 1. Download the folder [InfoGrasper/Infoskjerm/](https://github.com/runeandre/InfoGrasper/tree/master/Infoskjerm/)
