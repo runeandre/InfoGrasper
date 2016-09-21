@@ -22,10 +22,10 @@ Windows PC = Server to push images to Pi's, also converts Power Points
 
 7. The script will download updates to Rasbian, install network manager and fbi, and update config files and scripts.
 8. Follow the manual instructions the script shows when it has completed (configuring the Pi).
-...A text file and two images will be copied onto the Desktop of the Pi.
-..*Raspberry_Pi_Setup.txt
-..*RaspberryPi_Config.png
-..*Wifi.png
+⋅⋅⋅A text file and two images will be copied onto the Desktop of the Pi.
+⋅⋅*Raspberry_Pi_Setup.txt
+⋅⋅*RaspberryPi_Config.png
+⋅⋅*Wifi.png
 
 ### Device 2 - Windows PC
 1. Download the folder [InfoGrasper/Infoskjerm/](https://github.com/runeandre/InfoGrasper/tree/master/Infoskjerm/)
@@ -35,4 +35,5 @@ Windows PC = Server to push images to Pi's, also converts Power Points
 Why use a Windows machine to push images to the Pi?
 
 Because the Windows component of this setup converts Power Points to images using Power Shell.
+
 It was problematic using Libre Office and getting good results when converting "corporate" Power Points to images.
