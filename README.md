@@ -4,6 +4,7 @@ A really simple infoscreen solution for the Raspberry Pi, using a Windows machin
 
 ## Installation
 Raspberry Pi = Client connected to a TV/screen
+
 Windows PC = Server to push images to Pi's, also converts Power Points
 
 ### Device 1 - Raspberry Pi
