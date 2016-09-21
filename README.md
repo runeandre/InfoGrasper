@@ -14,7 +14,9 @@ Windows PC = Server to push images to Pi's, also converts Power Points
 5. Open the terminal on the Pi and "cd" into the folder where you put the files
 6. Run the following commands to make the script "PiSetup" executable and starting it
     ```
+    
     chmod +x PiSetup
+    
     sudo ./PiSetup
     ```
 7. The script will download updates to Rasbian, install network manager and fbi, and update config files and scripts.
