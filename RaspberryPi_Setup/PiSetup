@@ -30,7 +30,30 @@ echo "* Updating the Pi"
 sudo apt update
 sudo apt -y dist-upgrade
 
+####################
+## Remote desktop ##
+####################
+sudo apt -y remove xrdp vnc4server tightvncserver
+sudo apt -y install tightvncserver
+sudo apt -y install xrdp
 
+echo "
+allowed_users=anybody
+" >> /etc/X11/Xwrapper.config
+
+## Create desktop two files to start some config when logged in via XRDP 
+echo "#!/bin/bash
+gksu rc_gui
+" > /home/pi/Desktop/Raspberry_Pi_Config
+
+echo "#!/bin/bash
+gksu nm-connection-editor
+" > /home/pi/Desktop/Network_Editor
+
+chmod -x /home/pi/Desktop/Raspberry_Pi_Config
+chmod -x /home/pi/Desktop/Network_Editor
+
+## Source tips: http://raspberrypi.stackexchange.com/questions/56413/error-problem-connecting-to-raspberry-pi-3-with-xrdp
 
 ##################################
 # Network Manager for XS4DS wifi #
