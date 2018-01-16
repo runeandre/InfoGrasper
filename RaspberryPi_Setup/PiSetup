@@ -110,7 +110,7 @@ echo '#!/bin/bash
 sudo kill $( ps aux | grep -v grep | grep fbi | awk '\''{ print $2 }'\'' )' > /home/pi/scripts/stop.sh
 
 echo "* Add start script to startup"
-sed -i '$i \# Start the info screen script\n/home/pi/scripts/start.sh &\n' /etc/rc.local
+sed -i '$i \# Start the info screen script\n/home/pi/scripts/start.sh &\n' /home/pi/.bashrc
 #######################
 # Infoskjerm specific #
 #        Stop         #
